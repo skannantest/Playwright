@@ -1,0 +1,27 @@
+package Play;
+
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.BrowserType.LaunchOptions;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
+
+public class Dropdowns {
+
+	public static void main(String[] args) throws Throwable {
+
+		Playwright playwright = Playwright.create();
+		LaunchOptions headless =  new BrowserType.LaunchOptions().setHeadless(false);
+		Page page = playwright.chromium().launch(headless).newPage();
+
+		page.navigate("https://letcode.in/dropdowns");
+		page.selectOption("#fruits", "0"); // Select dropdown by visible text or visible values code which used in selenium
+		String notificationMsg = page.locator("//div[@class='notification is-success']//p[1]").textContent(); // get text code
+		System.out.println(notificationMsg);
+		
+		Thread.sleep(3000);
+		page.close();
+		playwright.close();
+	}
+
+}
