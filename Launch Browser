@@ -4,6 +4,7 @@ import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
+import org.testng.Assert;
 
 
 public class Launch {
@@ -23,6 +24,8 @@ public class Launch {
 		System.out.println(pagetitle);
 		System.out.println(pageURL);
 		
+		Assert.assertTrue(pageURL.equals("https://letcode.in/edit"),"URL is not correct");
+
 		page.close();
 		browser.close();
 		playwright.close();
