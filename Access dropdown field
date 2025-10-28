@@ -16,7 +16,11 @@ public class Dropdowns {
 		Page page = playwright.chromium().launch(headless).newPage();
 
 		page.navigate("https://letcode.in/dropdowns");
-		Locator select = page.locator("#fruits"); 
+		
+		page.selectOption("#fruits","3"); // dropdown
+		Thread.sleep(3000);
+
+		Locator select = page.locator("#fruits"); // store element and use it
 		select.selectOption("Apple"); // Select dropdown by visible text or visible values code which used in selenium
 		
 		String notificationMsg = page.locator("//div[@class='notification is-success']//p[1]").textContent(); // get text code
@@ -24,7 +28,6 @@ public class Dropdowns {
 		
 		Locator multiple = page.locator("id=superheros"); 
 		multiple.selectOption(new String[] {"am","aq","ta"}); // Use if we want to choose multiple values from dropdown.
-		
 		
 		Thread.sleep(3000);
 		page.close();
