@@ -17,7 +17,7 @@ public class Dropdowns {
 
 		page.navigate("https://letcode.in/dropdowns");
 		
-		page.selectOption("#fruits","3"); // dropdown
+		page.selectOption("#fruits","3"); // dropdown type 1
 		Thread.sleep(3000);
 
 		Locator select = page.locator("#fruits"); // store element and use it
@@ -29,6 +29,8 @@ public class Dropdowns {
 		Locator multiple = page.locator("id=superheros"); 
 		multiple.selectOption(new String[] {"am","aq","ta"}); // Use if we want to choose multiple values from dropdown.
 		
+		page.locator("#fruits").selectOption("4");// dropdown type 2
+
 		Thread.sleep(3000);
 		page.close();
 		playwright.close();
