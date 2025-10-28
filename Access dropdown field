@@ -3,6 +3,7 @@ package Play;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
@@ -15,9 +16,15 @@ public class Dropdowns {
 		Page page = playwright.chromium().launch(headless).newPage();
 
 		page.navigate("https://letcode.in/dropdowns");
-		page.selectOption("#fruits", "0"); // Select dropdown by visible text or visible values code which used in selenium
+		Locator select = page.locator("#fruits"); 
+		select.selectOption("Apple"); // Select dropdown by visible text or visible values code which used in selenium
+		
 		String notificationMsg = page.locator("//div[@class='notification is-success']//p[1]").textContent(); // get text code
 		System.out.println(notificationMsg);
+		
+		Locator multiple = page.locator("id=superheros"); 
+		multiple.selectOption(new String[] {"am","aq","ta"}); // Use if we want to choose multiple values from dropdown.
+		
 		
 		Thread.sleep(3000);
 		page.close();
