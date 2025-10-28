@@ -1,0 +1,30 @@
+package Play;
+
+import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserContext;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.Page;
+
+public class inputsFields {
+
+	public static void main(String[] args) throws Throwable {
+
+		Playwright playwright = Playwright.create();
+		Browser browser =  playwright.chromium().launch(
+				new BrowserType.LaunchOptions().setHeadless(false)
+				
+				);
+		Page page = browser.newPage();
+		
+		page.navigate("https://letcode.in/edit");
+		page.locator("#fullName").type("Kannan S"); // Used to just type the text 
+		page.locator("#join").fill(" and bad man"); // used to clear and type the text.
+		
+		Thread.sleep(5000);
+		page.close();
+		browser.close();
+		playwright.close();
+	}
+
+}
