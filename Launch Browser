@@ -1,0 +1,32 @@
+package Play;
+
+import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.Page;
+
+
+public class Launch {
+
+	public static void main(String[] args) {
+
+		Playwright playwright = Playwright.create();
+		Browser browser =  playwright.chromium().launch(
+				new BrowserType.LaunchOptions().setHeadless(false)
+				);
+		Page page = browser.newPage();
+		
+		page.navigate("https://letcode.in/edit");
+		String pageURL= page.url();
+		String pagetitle = page.title();
+		
+		System.out.println(pagetitle);
+		System.out.println(pageURL);
+		
+		page.close();
+		browser.close();
+		playwright.close();
+
+	}
+
+}
